@@ -1,0 +1,15 @@
+{
+  "name": "DOCXtra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docxtemplater": "^3.19.6",
+    "pizzip": "^3.0.6"
+  }
+}
