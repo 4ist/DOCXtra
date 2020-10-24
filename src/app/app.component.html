@@ -3,11 +3,12 @@ hello worlt
 <button (click)="openModal()">
   Open Modal
 </button>
-
-<button (click)="addSubstitution()">+</button>
-
-<div id="substitutions">
-  <app-substitution></app-substitution>
-  <app-substitution></app-substitution>
-  <app-substitution></app-substitution>
-</div>
+<br>
+<button>+</button>
+<button (click)="logSubs()">log subs</button>
+<!--(click)="addSubstitution()"-->
+<ul style="background-color: brown;">
+  <li *ngFor="let int of substitutions">
+      <app-substitution></app-substitution>
+  </li>
+</ul>
