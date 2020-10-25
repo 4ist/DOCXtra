@@ -10,7 +10,7 @@ import { SubstitutionComponent } from './substitution/substitution.component';
 })
 export class AppComponent {
   title = 'DOCXtra';
-  substitutions = Array(6).fill(1);
+  substitutions = Array(6);
   private ipc: IpcRenderer
   constructor(){
     if ((<any>window).require) {
@@ -26,6 +26,14 @@ export class AppComponent {
 
   logSubs(){
     console.log(this.substitutions);
+  }
+
+  addSub(){
+    this.substitutions.push(0);
+  }
+
+  removeSub(){
+    this.substitutions.pop();
   }
   openModal(){
     console.log("Open a modal");
