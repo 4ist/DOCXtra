@@ -1,22 +1,38 @@
 <mat-card class="card">
-  <mat-card-header>
+
+  <mat-card-header color="primary">
     <mat-card-title>DOCX: Word Doc Templater</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
-    <button (click)="openModal()">Open Modal</button>
     <br />
-    <button (click)="addSub()">+</button>
-    <button (click)="removeSub()">-</button>
-    <button (click)="logSubs()">log subs</button>
-    <!--(click)="addSubstitution()"-->
-    <div>
+    <span>Input/output file locations</span>
+    <br />
+    <mat-form-field>
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Output</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <br />
+    <br />
+    <span>Substitutions</span>
+    <div id="substitutionContainer">
       <div *ngFor="let int of substitutions">
         <app-substitution></app-substitution>
       </div>
     </div>
+    <button (click)="removeSub()" mat-mini-fab color="primary" class="modSubButton" >-</button>
+    <button (click)="addSub()" mat-mini-fab color="primary" class="modSubButton" >+</button>
+
+    <button (click)="createDocument()" mat-raised-button color="primary" style="float: right;">Create Document</button>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>Preview</button>
-    <button mat-button>Submit</button>
+
   </mat-card-actions>
 </mat-card>
+
+<button (click)="logSubs()">log subs</button>

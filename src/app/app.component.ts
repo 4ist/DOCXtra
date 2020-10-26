@@ -35,6 +35,16 @@ export class AppComponent {
   removeSub(){
     this.substitutions.pop();
   }
+
+  createDocument(){
+    var x = document.getElementById('substitutionContainer');
+    x.childNodes.forEach(div => {
+      console.log(div.firstChild.firstChild)
+      console.log(div.firstChild.firstChild.childNodes)
+      console.log(div.firstChild.firstChild)
+    });
+    //console.log(x.childNodes);
+  }
   openModal(){
     console.log("Open a modal");
     this.ipc.send("openModal");

@@ -4,7 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SubstitutionComponent } from './substitution/substitution.component';
 
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field'; //MatInputModule
+import { MatInputModule } from '@angular/material/input'; //MatInputModule
+import { MatButtonModule } from '@angular/material/button'; //MatInputModule
+
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -12,11 +16,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     SubstitutionComponent
-
   ],
   imports: [
     BrowserModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     NoopAnimationsModule
   ],
   providers: [],
