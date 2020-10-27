@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input'; //MatInputModule
 import { MatButtonModule } from '@angular/material/button'; //MatInputModule
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,

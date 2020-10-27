@@ -1,38 +1,59 @@
 <mat-card class="card">
-
   <mat-card-header color="primary">
     <mat-card-title>DOCX: Word Doc Templater</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <br />
-    <span>Input/output file locations</span>
-    <br />
-    <mat-form-field>
-      <mat-label>Input</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <br />
-    <mat-form-field>
-      <mat-label>Output</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <br />
-    <br />
-    <span>Substitutions</span>
-    <div id="substitutionContainer">
-      <div *ngFor="let int of substitutions">
-        <app-substitution></app-substitution>
+    <form [formGroup]="fullForm" (ngSubmit)="createDocument()">
+      <br />
+      <span>Input/output file locations</span>
+      <br />
+      <mat-form-field>
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Output</mat-label>
+        <input matInput />
+      </mat-form-field>
+      <br />
+      <br />
+      <span>Substitutions</span>
+      <div formArrayName="substitutions">
+        <div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" [formGroupName]="$index">
+          <app-substitution [subFormss]="fullForm.controls.substitutions.value[$index]"></app-substitution>
+        </div>
       </div>
-    </div>
-    <button (click)="removeSub()" mat-mini-fab color="primary" class="modSubButton" >-</button>
-    <button (click)="addSub()" mat-mini-fab color="primary" class="modSubButton" >+</button>
 
-    <button (click)="createDocument()" mat-raised-button color="primary" style="float: right;">Create Document</button>
+      <button
+        (click)="removeSubstitutionRow(1)"
+        mat-mini-fab
+        color="primary"
+        class="modSubButton"
+      >
+        -
+      </button>
+      <button
+        (click)="addSubstitutionRow()"
+        mat-mini-fab
+        color="primary"
+        class="modSubButton"
+      >
+        +
+      </button>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        style="float: right"
+      >
+        Create Document
+      </button>
+    </form>
   </mat-card-content>
-  <mat-card-actions>
-
-  </mat-card-actions>
+  <mat-card-actions> </mat-card-actions>
 </mat-card>
 
 <button (click)="logSubs()">log subs</button>
