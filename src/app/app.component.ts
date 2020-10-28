@@ -15,6 +15,7 @@ import { SubstitutionComponent } from './substitution/substitution.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
+
 export class AppComponent {
   title = 'DOCXtra';
   substitutions = Array(6);
@@ -64,6 +65,7 @@ export class AppComponent {
       }, 4000);
     }
   }
+
   addSubstitutionRow(): void {
     const usersArray = <FormArray>this.fullForm.controls['substitutions'];
     usersArray.push(this.initSubstitutionRow());
@@ -74,25 +76,19 @@ export class AppComponent {
     console.log(this.fullForm.controls.substitutions.value);
   }
 
-  addSub() {
-    this.substitutions.push(0);
-  }
-
-  removeSub() {
-    this.substitutions.pop();
-  }
-
   createDocument() {
     console.log('-CreateDocument-');
     console.log(this.fullForm);
+    //TODO validate form (use mealScheduler for reference)
+    //this.fullForm.controls.value.source
+    //this.fullForm.controls.value.destination
+    //this.fullForm.controls.substitutions.value
   }
+
   openModal() {
     console.log('Open a modal');
     this.ipc.send('openModal');
   }
 
-  ChangeThis(fg: FormGroup){
-    fg['token'] += '@';
-  }
 
 }

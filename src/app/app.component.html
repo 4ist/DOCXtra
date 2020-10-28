@@ -10,44 +10,43 @@
       <br />
       <mat-form-field>
         <mat-label>Input</mat-label>
-        <input matInput formControlName="source"/>
+        <input matInput formControlName="source" />
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Output</mat-label>
-        <input matInput formControlName="destination"/>
+        <input matInput formControlName="destination" />
       </mat-form-field>
       <br />
       <br />
       <span>Substitutions</span>
       <div formArrayName="substitutions">
-        <!--<div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" >-->
-        <div *ngFor="let form of fullForm.get('substitutions')['controls']; let $index=index" >
-          <label>{{$index}}</label>
-
-            <!--<div [formGroup]="fullForm.controls.substitutions.value[$index]" >-->
-
-              <div [formGroupName]="$index" >
+        <div
+          *ngFor="
+            let form of fullForm.get('substitutions')['controls'];
+            let $index = index
+          "
+        >
+          <div [formGroupName]="$index">
             <mat-form-field>
               <mat-label>Token</mat-label>
-              <input matInput formControlName="token" placeholder="Ex. first_name" />
+              <input
+                matInput
+                formControlName="token"
+                placeholder="Ex. first_name"
+              />
             </mat-form-field>
+
             <mat-form-field>
               <mat-label>Replacement</mat-label>
               <input matInput formControlName="value" placeholder="Ex. John" />
             </mat-form-field>
-            </div>
-
-
-        <!--<button style="background-color: brown;" (click)="logFormGroup()">log form group</button>-->
-
-         <!-- <app-substitution [formGroupName]="$index"></app-substitution> -->
-
-          <button style="background-color: violet;" (click)="ChangeThis(fullForm.controls.substitutions.value[$index])">change fullForm.controls.substitutions value</button>
+          </div>
         </div>
       </div>
 
       <button
+        type="button"
         (click)="removeSubstitutionRow(1)"
         mat-mini-fab
         color="primary"
@@ -55,7 +54,9 @@
       >
         -
       </button>
+
       <button
+        type="button"
         (click)="addSubstitutionRow()"
         mat-mini-fab
         color="primary"
