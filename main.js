@@ -66,3 +66,22 @@ ipcMain.on('openModal', (event, arg) => {
   docRunner.replaceDocData(inputFile, outputFile, data)
   //replaceDocData()
 })
+
+ipcMain.on('createDocument', (event, arg) => {
+console.log('createDoc IPC call');
+  const inputFile = arg.sourcePath;
+  const outputFile = arg.destinationPath;
+  const data = {
+    first_name: 'John',
+    last_name: 'Doe',
+    phone: '0652455478',
+    description: 'New Website',
+    receiver_first_name: 'Jane'
+  }; //TODO cast a string as a JS generic object
+console.log('input: ', inputFile);
+console.log('output: ', outputFile);
+  //openModal()
+  //const runner = new docRunner.DocRunner
+  //docRunner.replaceDocData(inputFile, outputFile, data)
+  //replaceDocData()
+})
