@@ -21,9 +21,28 @@
       <br />
       <span>Substitutions</span>
       <div formArrayName="substitutions">
-        <div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" >
+        <!--<div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" >-->
+        <div *ngFor="let form of fullForm.get('substitutions')['controls']; let $index=index" >
           <label>{{$index}}</label>
-          <app-substitution [substitutionFormGroup]="fullForm.controls.substitutions.value[$index]"></app-substitution>
+
+            <!--<div [formGroup]="fullForm.controls.substitutions.value[$index]" >-->
+
+              <div [formGroupName]="$index" >
+            <mat-form-field>
+              <mat-label>Token</mat-label>
+              <input matInput formControlName="token" placeholder="Ex. first_name" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Replacement</mat-label>
+              <input matInput formControlName="value" placeholder="Ex. John" />
+            </mat-form-field>
+            </div>
+
+
+        <!--<button style="background-color: brown;" (click)="logFormGroup()">log form group</button>-->
+
+         <!-- <app-substitution [formGroupName]="$index"></app-substitution> -->
+
           <button style="background-color: violet;" (click)="ChangeThis(fullForm.controls.substitutions.value[$index])">change fullForm.controls.substitutions value</button>
         </div>
       </div>

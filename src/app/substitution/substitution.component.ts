@@ -20,6 +20,11 @@ export class SubstitutionComponent implements OnInit {
   // passing in the formgroup from the parent
   @Input() substitutionFormGroup: FormGroup;
 
+  @Input() formGroupName: string;
+
+  myGroup = new FormGroup({
+    person: new FormGroup({ firstName: new FormControl() })
+ });
   logFormGroup(){
     console.log('paremeter group: ', this.substitutionFormGroup)
   }

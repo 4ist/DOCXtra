@@ -1,6 +1,6 @@
 
-
-<div [formGroup]="substitutionFormGroup"  >
+<div [formGroup]="myGroup">
+<div [formGroupName]="formGroupName"  >
     <mat-form-field>
       <mat-label>Token</mat-label>
       <input matInput formControlName="token" placeholder="Ex. first_name" />
@@ -9,6 +9,8 @@
       <mat-label>Replacement</mat-label>
       <input matInput formControlName="value" placeholder="Ex. John" />
     </mat-form-field>
+    <button style="background-color: brown;" (click)="logFormGroup()">log form group</button>
+
 </div>
 
-<button style="background-color: brown;" (click)="logFormGroup()">log form group</button>
+</div>
