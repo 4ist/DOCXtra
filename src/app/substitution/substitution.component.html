@@ -1,5 +1,6 @@
-<div [formGroup]="substitutionFormGroup" [formGroupName]="subFormss"> <!--when I remove formGroupName the text input loses functionality-->
-  <div >
+
+
+<div [formGroup]="substitutionFormGroup"  >
     <mat-form-field>
       <mat-label>Token</mat-label>
       <input matInput formControlName="token" placeholder="Ex. first_name" />
@@ -8,5 +9,6 @@
       <mat-label>Replacement</mat-label>
       <input matInput formControlName="value" placeholder="Ex. John" />
     </mat-form-field>
-  </div>
 </div>
+
+<button style="background-color: brown;" (click)="logFormGroup()">log form group</button>

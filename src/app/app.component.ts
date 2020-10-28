@@ -45,7 +45,7 @@ export class AppComponent {
 
   initSubstitutionRow(): FormGroup {
     return this.formBuilder.group({
-      token: [null, [Validators.required]],
+      token: ['valueFromParent', [Validators.required]],
       value: [null, [Validators.required]],
     });
   }
@@ -58,7 +58,7 @@ export class AppComponent {
       usersArray.removeAt(fakeRowIndex);
     } else {
       this.errorMessage =
-        'Unable to delete this row; form must contain at least.';
+        'Unable to delete this row; form must contain at least one row.';
       setTimeout(() => {
         this.errorMessage = null;
       }, 4000);
@@ -70,7 +70,8 @@ export class AppComponent {
   }
 
   logSubs() {
-    console.log(this.substitutions);
+    //console.log(this.substitutions);
+    console.log(this.fullForm.controls.substitutions.value);
   }
 
   addSub() {
@@ -82,10 +83,16 @@ export class AppComponent {
   }
 
   createDocument() {
+    console.log('-CreateDocument-');
     console.log(this.fullForm);
   }
   openModal() {
     console.log('Open a modal');
     this.ipc.send('openModal');
   }
+
+  ChangeThis(fg: FormGroup){
+    fg['token'] += '@';
+  }
+
 }

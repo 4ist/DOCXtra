@@ -10,19 +10,21 @@
       <br />
       <mat-form-field>
         <mat-label>Input</mat-label>
-        <input matInput />
+        <input matInput formControlName="source"/>
       </mat-form-field>
       <br />
       <mat-form-field>
         <mat-label>Output</mat-label>
-        <input matInput />
+        <input matInput formControlName="destination"/>
       </mat-form-field>
       <br />
       <br />
       <span>Substitutions</span>
       <div formArrayName="substitutions">
-        <div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" [formGroupName]="$index">
-          <app-substitution [subFormss]="fullForm.controls.substitutions.value[$index]"></app-substitution>
+        <div *ngFor="let form of fullForm.controls.substitutions.value; let $index=index" >
+          <label>{{$index}}</label>
+          <app-substitution [substitutionFormGroup]="fullForm.controls.substitutions.value[$index]"></app-substitution>
+          <button style="background-color: violet;" (click)="ChangeThis(fullForm.controls.substitutions.value[$index])">change fullForm.controls.substitutions value</button>
         </div>
       </div>
 
