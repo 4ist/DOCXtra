@@ -24,6 +24,8 @@ export class AppComponent {
   fullForm: FormGroup;
   errorMessage: string;
 
+  errors: string[] = [];
+
   constructor(private formBuilder: FormBuilder) {
     if ((<any>window).require) {
       try {
@@ -78,20 +80,33 @@ export class AppComponent {
 
   createDocument() {
     console.log('-CreateDocument-');
+    this.errors = [];
     const sourcePath = this.fullForm.controls['source'].value;
     const destinationPath = this.fullForm.controls['destination'].value;
-    const substitutions = this.fullForm.controls['substitutions'].value;
 
-    const obj = {sourcePath, destinationPath, substitutions}
+    if (sourcePath == '')
+      this.errors.push('Input path was empty');
+    if (destinationPath == '')
+      this.errors.push('Output path was empty');
 
-    //console.log(obj.);
+    var substitutions = {}
+    const preformattedSubstitutions = this.fullForm.controls['substitutions'].value;
+    preformattedSubstitutions.forEach(element => {
+      var tempToken = element['token'];
+      var tempValue = element['value'];
 
-    //const formJSON = JSON.stringify(obj);
-    console.log('Submitted form object', obj);
+      if(substitutions[tempToken] != null)
+        this.errors.push(`Token ${tempToken} is used multiple times`);
+      else
+        substitutions[tempToken] = tempValue;
+    });
+
+    const requestObj = {sourcePath, destinationPath, substitutions}
+    console.log('Submitted form object', requestObj);
 
     if ((<any>window).require) {
       try {
-        this.ipc.send('createDocument', obj)
+        this.ipc.send('createDocument', requestObj)
       } catch (e) {
         throw e;
       }

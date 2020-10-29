@@ -1,6 +1,6 @@
 <mat-card class="card">
   <mat-card-header color="primary">
-    <mat-card-title>DOCX: Word Doc Templater</mat-card-title>
+    <mat-card-title>DOCXtra: Word Doc Templater</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
@@ -9,12 +9,12 @@
       <span>Input/output file locations</span>
       <br />
       <mat-form-field>
-        <mat-label>Input</mat-label>
+        <mat-label>Input File Path</mat-label> <!-- TODO select from local file storage -->
         <input matInput formControlName="source" />
       </mat-form-field>
       <br />
       <mat-form-field>
-        <mat-label>Output</mat-label>
+        <mat-label>Output File Path</mat-label>
         <input matInput formControlName="destination" />
       </mat-form-field>
       <br />
@@ -77,5 +77,9 @@
   </mat-card-content>
   <mat-card-actions> </mat-card-actions>
 </mat-card>
+
+<ul *ngFor="let error of errors">
+  <li>{{ error }}</li>
+</ul>
 
 <button (click)="logSubs()">log subs</button>
