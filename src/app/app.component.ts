@@ -78,11 +78,27 @@ export class AppComponent {
 
   createDocument() {
     console.log('-CreateDocument-');
-    console.log(this.fullForm);
-    //TODO validate form (use mealScheduler for reference)
-    //this.fullForm.controls.value.source
-    //this.fullForm.controls.value.destination
-    //this.fullForm.controls.substitutions.value
+    const sourcePath = this.fullForm.controls['source'].value;
+    const destinationPath = this.fullForm.controls['destination'].value;
+    const substitutions = this.fullForm.controls['substitutions'].value;
+
+    const obj = {sourcePath, destinationPath, substitutions}
+
+    //console.log(obj.);
+
+    //const formJSON = JSON.stringify(obj);
+    console.log('Submitted form object', obj);
+
+    if ((<any>window).require) {
+      try {
+        this.ipc.send('createDocument', obj)
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn('App not running inside Electron');
+    }
+
   }
 
   openModal() {
