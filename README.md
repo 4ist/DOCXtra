@@ -1,27 +1,25 @@
 # DOCXtra
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+This is an application to make text replacements to tokens within docx template documents.
 
-## Development server
+This is a desktop application running in electron. The UI was written in angular, and the backend uses an electron API layer on top of a node processing application. The replacement engine for the backend uses the DOCXtemplater library.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Preparing the App
 
-## Code scaffolding
+Requirements: Git, Node.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `git clone https://github.com/4ist/DOCXtra.git` to pull the source code.
 
-## Build
+Navigate to the cloned directory with `cd DOCXtra`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm install` to download/install the dependencies for the application.
 
-## Running unit tests
+## Running the App
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To run the full application, run `npm run start:electron`. This will trigger an Angular build followed by execution of the electron app. If the application is already built, the `electron .` command can be ran to skip the build step.
 
-## Running end-to-end tests
+Since the UI is in Angular, it can be ran and viewed in a broswer with the Run `ng serve` command. Note that this wil just render the UI and that no backend processes are running. 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+In the near future, the application will be downloadable as an exe.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
