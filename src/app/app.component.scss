@@ -1,12 +1,21 @@
 
+$dark-theme-text: #aaaaaa;
+
 .card {
   max-width: 400px;
-  background-color: whitesmoke;
+  background-color: #1F1B24 ;
+  color: $dark-theme-text;
   margin: auto;
   top: 50px;
 
 }
 
+.dark-theme{
+  color: $dark-theme-text;
+
+
+}
 .modSubButton {
   margin-right: 5px;
 }
+
