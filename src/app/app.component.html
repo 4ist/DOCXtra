@@ -4,15 +4,15 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="fullForm" (ngSubmit)="submitForm()">
+    <form class="dark-theme" [formGroup]="fullForm" (ngSubmit)="submitForm()">
       <br />
       <mat-form-field style="width: 100%;">
-        <mat-label>Input File Path</mat-label> <!-- TODO select from local file storage -->
+        <mat-label class="dark-theme">Input File Path</mat-label> <!-- TODO select from local file storage -->
         <input matInput formControlName="source" />
       </mat-form-field>
       <br />
       <mat-form-field style="width: 100%;">
-        <mat-label>Output File Path</mat-label>
+        <mat-label class="dark-theme">Output File Path</mat-label>
         <input matInput formControlName="destination" />
       </mat-form-field>
       <br />
@@ -25,7 +25,7 @@
         >
           <div [formGroupName]="$index">
             <mat-form-field>
-              <mat-label>Token</mat-label>
+              <mat-label class="dark-theme">Token</mat-label>
               <input
                 matInput
                 formControlName="token"
@@ -34,7 +34,7 @@
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Replacement</mat-label>
+              <mat-label class="dark-theme">Replacement</mat-label>
               <input matInput formControlName="value" placeholder="Ex. John" />
             </mat-form-field>
           </div>
