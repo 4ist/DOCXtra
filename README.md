@@ -4,9 +4,6 @@ This is an application to make text replacements to tokens within docx template 
 
 This is a desktop application running in electron. The UI was written in angular, and the backend uses an electron API layer on top of a node processing application. The replacement engine for the backend uses the DOCXtemplater library.
 
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
-
 ## Preparing the App
 
 Requirements: Git, Node.js
