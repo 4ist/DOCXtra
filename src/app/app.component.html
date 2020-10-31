@@ -4,22 +4,18 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="fullForm" (ngSubmit)="createDocument()">
+    <form [formGroup]="fullForm" (ngSubmit)="submitForm()">
       <br />
-      <span>Input/output file locations</span>
-      <br />
-      <mat-form-field>
+      <mat-form-field style="width: 100%;">
         <mat-label>Input File Path</mat-label> <!-- TODO select from local file storage -->
         <input matInput formControlName="source" />
       </mat-form-field>
       <br />
-      <mat-form-field>
+      <mat-form-field style="width: 100%;">
         <mat-label>Output File Path</mat-label>
         <input matInput formControlName="destination" />
       </mat-form-field>
       <br />
-      <br />
-      <span>Substitutions</span>
       <div formArrayName="substitutions">
         <div
           *ngFor="
@@ -82,4 +78,3 @@
   <li>{{ error }}</li>
 </ul>
 
-<button (click)="logSubs()">log subs</button>

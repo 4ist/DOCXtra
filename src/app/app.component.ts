@@ -17,6 +17,7 @@ import { SubstitutionComponent } from './substitution/substitution.component';
 })
 
 export class AppComponent {
+
   title = 'DOCXtra';
   substitutions = Array(6);
   private ipc: IpcRenderer;
@@ -48,7 +49,7 @@ export class AppComponent {
 
   initSubstitutionRow(): FormGroup {
     return this.formBuilder.group({
-      token: ['valueFromParent', [Validators.required]],
+      token: [null, [Validators.required]],
       value: [null, [Validators.required]],
     });
   }
@@ -78,32 +79,49 @@ export class AppComponent {
     console.log(this.fullForm.controls.substitutions.value);
   }
 
-  createDocument() {
-    console.log('-CreateDocument-');
+  submitForm() {
+    console.log('-sub-');
     this.errors = [];
     const sourcePath = this.fullForm.controls['source'].value;
     const destinationPath = this.fullForm.controls['destination'].value;
 
-    if (sourcePath == '')
-      this.errors.push('Input path was empty');
-    if (destinationPath == '')
-      this.errors.push('Output path was empty');
+    this.validatePaths(sourcePath, destinationPath);
 
-    var substitutions = {}
     const preformattedSubstitutions = this.fullForm.controls['substitutions'].value;
+    const substitutions = this.substitutionsArrayToGeneric(preformattedSubstitutions);
+
+    const requestObj = {sourcePath, destinationPath, substitutions};
+
+    if (!this.formIsValid())
+      alert(`Unable to submit form, the following errors are present:${this.errors}`);
+    else
+      this.submitElectronRequest(requestObj)
+  }
+
+  validatePaths(sourcePath: string, destinationPath: string) {
+    if (sourcePath == '')
+    this.errors.push('\nInput path was empty');
+  if (destinationPath == '')
+    this.errors.push('\nOutput path was empty\n');  }
+
+  formIsValid(): boolean {
+    return this.errors.length == 0  
+  }
+
+  substitutionsArrayToGeneric(preformattedSubstitutions) {
+    var substitutionGeneric = {};
     preformattedSubstitutions.forEach(element => {
       var tempToken = element['token'];
       var tempValue = element['value'];
 
-      if(substitutions[tempToken] != null)
-        this.errors.push(`Token ${tempToken} is used multiple times`);
+      if (substitutionGeneric[tempToken] != null)
+        this.errors.push(`\nToken ${tempToken} is used multiple times`);
       else
-        substitutions[tempToken] = tempValue;
+      substitutionGeneric[tempToken] = tempValue;
     });
+  }
 
-    const requestObj = {sourcePath, destinationPath, substitutions}
-    console.log('Submitted form object', requestObj);
-
+  submitElectronRequest(requestObj: any) {
     if ((<any>window).require) {
       try {
         this.ipc.send('createDocument', requestObj)
@@ -111,15 +129,8 @@ export class AppComponent {
         throw e;
       }
     } else {
-      console.warn('App not running inside Electron');
-    }
-
-  }
-
-  openModal() {
-    console.log('Open a modal');
-    this.ipc.send('openModal');
-  }
+      console.warn('Request not sent; app not running inside Electron');
+    }  }
 
 
 }
